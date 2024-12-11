@@ -91,8 +91,13 @@ export const usePDFDocumentContext = ({
       }),
     );
 
+    const largestViewportWidth = Math.max(
+      ...viewports.map((viewport) => viewport.width),
+    );
+
     setInitialState({
       viewports,
+      defaultViewportWidth: largestViewportWidth,
       // defaultRotations: rotations,
       pageProxies,
       pdfDocumentProxy: pdf,

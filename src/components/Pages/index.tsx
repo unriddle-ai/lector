@@ -96,12 +96,12 @@ export const Pages = ({
 
   const isScrollingFast = Math.abs(normalizedVelocity) > 1;
   const shouldRender = !isScrollingFast;
+  const viewportWidth = usePDF((state) => state.defaultViewportWidth);
 
   return (
     <div
       style={{
         height: `${virtualizer.getTotalSize()}px`,
-        width: "100%",
         position: "relative",
       }}
     >
