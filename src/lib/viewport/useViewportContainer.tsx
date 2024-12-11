@@ -20,7 +20,6 @@ export const useViewportContainer = ({
   elementRef: RefObject<HTMLDivElement>;
 }) => {
   const [origin, setOrigin] = useState<[number, number]>([0, 0]);
-  const pageWidth = usePDF((state) => state.defaultViewportWidth);
 
   const { maxZoom, minZoom } = usePDF((state) => state.zoomOptions);
   const zoom = usePDF((state) => state.zoom);

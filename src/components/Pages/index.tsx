@@ -96,7 +96,6 @@ export const Pages = ({
 
   const isScrollingFast = Math.abs(normalizedVelocity) > 1;
   const shouldRender = !isScrollingFast;
-  const viewportWidth = usePDF((state) => state.defaultViewportWidth);
 
   return (
     <div

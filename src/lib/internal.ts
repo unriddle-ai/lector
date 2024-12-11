@@ -39,7 +39,6 @@ interface PDFState {
 
   viewports: Array<PageViewport>;
   viewportRef: React.MutableRefObject<HTMLDivElement | null>;
-  defaultViewportWidth: number;
 
   pageProxies: PDFPageProxy[];
 
@@ -64,7 +63,7 @@ export type PDFVirtualizer = Virtualizer<any, any>;
 
 export type InitialPDFState = Pick<
   PDFState,
-  "pdfDocumentProxy" | "pageProxies" | "viewports" | "defaultViewportWidth"
+  "pdfDocumentProxy" | "pageProxies" | "viewports"
 >;
 
 export const PDFStore = createZustandContext(
@@ -72,7 +71,6 @@ export const PDFStore = createZustandContext(
     return createStore<PDFState>((set, get) => ({
       pdfDocumentProxy: initialState.pdfDocumentProxy,
 
-      defaultViewportWidth: initialState.defaultViewportWidth,
       zoom: 1,
       zoomOptions: {
         minZoom: 0.5,
