@@ -1,5 +1,36 @@
 {
-	"devDependencies": {
-		"turbo": "^2.3.3"
-	}
+  "name": "@unriddle-ai/pdf-viewer",
+  "version": "0.0.0",
+  "description": "Headless PDF viewer for React",
+  "author": "andrewdr (https://github.com/andrewdoro)",
+  "type": "module",
+  "private": "true",
+  "scripts": {
+    "build": "turbo run build ",
+    "lint": "turbo run lint",
+    "format": "turbo run format",
+    "test": "turbo run test",
+    "dev": "turbo run dev"
+  },
+  "devDependencies": {
+    "turbo": "^2.3.3"
+  },
+  "keywords": [
+    "pdf",
+    "react",
+    "headless",
+    "viewer",
+    "react-pdf",
+    "unriddle-ai",
+    "typescript"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/unriddle-ai/pdf-viewer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/unriddle-ai/pdf-viewer/issues"
+  },
+  "homepage": "https://github.com/unriddle-ai/pdf-viewer",
+  "packageManager": "pnpm@9.5.0"
 }

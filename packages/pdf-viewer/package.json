@@ -1,7 +1,9 @@
 {
   "name": "@unriddle-ai/pdf-viewer",
   "version": "0.0.28",
-  "description": "Easiest way to display and interact with PDFs from your web app.",
+  "description": "Headless PDF viewer for React",
+  "author": "andrewdr (https://github.com/andrewdoro)",
+  "license": "MIT",
   "main": "dist/pdf-viewer.cjs",
   "types": "dist/src/index.d.ts",
   "type": "module",
@@ -22,8 +24,6 @@
     "build-storybook": "storybook build",
     "test:browser": "vitest --workspace=vitest.workspace.ts"
   },
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
     "@chromatic-com/storybook": "^1.6.1",
     "@eslint/js": "^9.6.0",
@@ -73,5 +73,22 @@
   },
   "optionalDependencies": {
     "@rollup/rollup-linux-x64-gnu": "^4.28.1"
-  }
+  },
+  "keywords": [
+    "pdf",
+    "react",
+    "headless",
+    "viewer",
+    "react-pdf",
+    "unriddle-ai",
+    "typescript"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/unriddle-ai/pdf-viewer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/unriddle-ai/pdf-viewer/issues"
+  },
+  "homepage": "https://github.com/unriddle-ai/pdf-viewer"
 }
