@@ -1,6 +1,7 @@
-dist
 node_modules
+dist
 
-storybook-static
+.env
+.env.development
 
-*storybook.log
+bun.lockb
