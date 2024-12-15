@@ -1,63 +1,63 @@
-name: Build and Publish
+# name: Build and Publish
 
-on:
-  push:
-    branches:
-      - main
+# on:
+#   push:
+#     branches:
+#       - main
 
-jobs:
-  build-and-publish:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      pages: write
-      id-token: write
-    steps:
-      - uses: actions/create-github-app-token@v1
-        id: app-token
-        with:
-          app-id: ${{ secrets.APP_ID }}
-          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+# jobs:
+#   build-and-publish:
+#     runs-on: ubuntu-latest
+#     permissions:
+#       contents: write
+#       pages: write
+#       id-token: write
+#     steps:
+#       - uses: actions/create-github-app-token@v1
+#         id: app-token
+#         with:
+#           app-id: ${{ secrets.APP_ID }}
+#           private-key: ${{ secrets.APP_PRIVATE_KEY }}
 
-      - uses: actions/checkout@v4
-        with:
-          token: ${{ steps.app-token.outputs.token }}
+#       - uses: actions/checkout@v4
+#         with:
+#           token: ${{ steps.app-token.outputs.token }}
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 18
-          cache: npm
-          registry-url: "https://registry.npmjs.org"
-          cache-dependency-path: ./package-lock.json
+#       - uses: actions/setup-node@v4
+#         with:
+#           node-version: 18
+#           cache: npm
+#           registry-url: "https://registry.npmjs.org"
+#           cache-dependency-path: ./package-lock.json
 
-      - run: npm install
-        working-directory: .
-      - run: npm run build
-        working-directory: .
-      #- run: npm test
-      #  working-directory: .
-      - run: git config --global user.email "support@unriddle.com"
-      - run: git config --global user.name "github-actions[bot]"
-      - run: |
-          tag=$(npm version patch -m 'Bump version to %s [skip ci]')
-          tag_without_v=${tag#v}
-          echo "tag=$tag_without_v" >> "$GITHUB_OUTPUT"
-        id: version
-        working-directory: .
-      - uses: ncipollo/release-action@v1
-        with:
-          tag: ${{ steps.version.outputs.tag }}
-          body: "Release ${{ steps.version.outputs.tag }}. Check it out on [NPM ➡️](https://www.npmjs.com/package/@unriddle-ai/pdf-viewer/v/${{ steps.version.outputs.tag }})."
-      - run: npm publish --access public
-        working-directory: .
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      #- uses: stefanzweifel/git-auto-commit-action@v5
-      #  with:
-      #    commit_options: "--dry-run --no-verify"
-      #    #commit_message: "Bump version [skip ci]"
-      #    skip_dirty_check: true
-      - run: git push origin
-      - uses: bitovi/github-actions-storybook-to-github-pages@v1.0.3
-        with:
-          path: storybook-static # default: dist/storybook
+#       - run: npm install
+#         working-directory: .
+#       - run: npm run build
+#         working-directory: .
+#       #- run: npm test
+#       #  working-directory: .
+#       - run: git config --global user.email "support@unriddle.com"
+#       - run: git config --global user.name "github-actions[bot]"
+#       - run: |
+#           tag=$(npm version patch -m 'Bump version to %s [skip ci]')
+#           tag_without_v=${tag#v}
+#           echo "tag=$tag_without_v" >> "$GITHUB_OUTPUT"
+#         id: version
+#         working-directory: .
+#       - uses: ncipollo/release-action@v1
+#         with:
+#           tag: ${{ steps.version.outputs.tag }}
+#           body: "Release ${{ steps.version.outputs.tag }}. Check it out on [NPM ➡️](https://www.npmjs.com/package/@unriddle-ai/pdf-viewer/v/${{ steps.version.outputs.tag }})."
+#       - run: npm publish --access public
+#         working-directory: .
+#         env:
+#           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+#       #- uses: stefanzweifel/git-auto-commit-action@v5
+#       #  with:
+#       #    commit_options: "--dry-run --no-verify"
+#       #    #commit_message: "Bump version [skip ci]"
+#       #    skip_dirty_check: true
+#       - run: git push origin
+#       - uses: bitovi/github-actions-storybook-to-github-pages@v1.0.3
+#         with:
+#           path: storybook-static # default: dist/storybook
