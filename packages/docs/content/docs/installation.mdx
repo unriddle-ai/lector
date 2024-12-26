@@ -31,16 +31,55 @@ bun add @unriddle-ai/lector pdfjs-dist
 
 ## Setting up PDF.js Worker
 
-2. Configure the PDF.js worker in your application. Add this to your entry file (e.g., `app.tsx` or `index.tsx`):
+2. Configure the PDF.js worker in your application:
+
+### App Router (default)
+
+In your PDF viewer component:
 
 ```tsx
 import { GlobalWorkerOptions } from "pdfjs-dist";
 import "pdfjs-dist/web/pdf_viewer.css";
 
+// Set up the worker
 GlobalWorkerOptions.workerSrc = new URL(
   "pdfjs-dist/build/pdf.worker.mjs",
   import.meta.url
 ).toString();
+
+export function PDFViewer() {
+  return (
+    <Root fileURL='/sample.pdf'>
+      <Pages>
+        <Page>
+          <CanvasLayer />
+        </Page>
+      </Pages>
+    </Root>
+  );
+}
+```
+
+### Pages Directory
+
+In your PDF viewer component:
+
+```tsx
+import { Root, Pages, Page, CanvasLayer } from "@unriddle-ai/lector";
+import "pdfjs-dist/build/pdf.worker.min.mjs";
+import "pdfjs-dist/web/pdf_viewer.css";
+
+export function PDFViewer() {
+  return (
+    <Root fileURL='/sample.pdf'>
+      <Pages>
+        <Page>
+          <CanvasLayer />
+        </Page>
+      </Pages>
+    </Root>
+  );
+}
 ```
 
 ## Required Styles

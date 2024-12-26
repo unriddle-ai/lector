@@ -8,22 +8,34 @@ GlobalWorkerOptions.workerSrc = new URL(
   import.meta.url
 ).toString();
 
-function App() {
+export default function App() {
   return (
-    <div className='bg-gray-100 w-full max-w-2xl mx-auto'>
-      <Root
-        fileURL='/sample.pdf'
-        className='h-[700px] w-full border overflow-hidden rounded-lg'
-        loader={<div className='p-4'>Loading...</div>}>
-        <Pages>
-          <Page>
-            <CanvasLayer />
-            <TextLayer />
-          </Page>
-        </Pages>
-      </Root>
+    <div className='min-h-screen bg-gray-100 p-8'>
+      <div className='mx-auto max-w-3xl'>
+        <div className='mb-4 flex items-center justify-between rounded-lg bg-white p-4 shadow-sm'>
+          <h1 className='text-xl font-semibold'>Lector PDF Viewer</h1>
+          <a
+            href='https://github.com/unriddle-ai/lector'
+            target='_blank'
+            rel='noopener noreferrer'
+            className='text-sm text-gray-500 hover:text-gray-700'>
+            View on GitHub →
+          </a>
+        </div>
+        <div className='rounded-lg bg-white shadow-sm'>
+          <Root
+            fileURL='/sample.pdf'
+            className='h-[700px] w-full border overflow-hidden rounded-lg'
+            loader={<div className='p-4'>Loading...</div>}>
+            <Pages>
+              <Page>
+                <CanvasLayer />
+                <TextLayer />
+              </Page>
+            </Pages>
+          </Root>
+        </div>
+      </div>
     </div>
   );
 }
-
-export default App;

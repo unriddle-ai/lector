@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className='flex flex-col '>
+    <div className='flex flex-col'>
       {/* Hero Section */}
       <section className='flex-1 w-full py-12 md:py-24 lg:py-32 xl:py-48'>
         <div className='container px-4 md:px-6'>
@@ -43,28 +43,26 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Features Section */}
-      {/* <section className='w-full py-12 md:py-24 lg:py-32 bg-gradient-to-b from-background to-muted/50'>
+      {/* Example Section */}
+      <section className='w-full py-12 md:py-24 bg-muted/50'>
         <div className='container px-4 md:px-6'>
-          <div className='grid gap-8 sm:grid-cols-2 lg:grid-cols-3'>
-            <FeatureCard
-              icon={Eye}
-              title='High Performance'
-              description='Lightning-fast PDF rendering with optimized performance.'
-            />
-            <FeatureCard
-              icon={CheckCircle}
-              title='Modern Features'
-              description='Advanced search, zoom controls, and thumbnail navigation.'
-            />
-            <FeatureCard
-              icon={Network}
-              title='Easy Integration'
-              description='Simple to integrate into any React application.'
+          <div className='flex flex-col items-center space-y-4 text-center mb-8'>
+            <h2 className='text-2xl font-bold tracking-tighter sm:text-3xl'>Try it out</h2>
+            <p className='mx-auto max-w-[600px] text-gray-500 md:text-lg dark:text-gray-400'>
+              Explore our basic example right in your browser using StackBlitz.
+            </p>
+          </div>
+          <div className='w-full aspect-[16/9] rounded-lg overflow-hidden border bg-background'>
+            <iframe
+              src='https://stackblitz.com/github/unriddle-ai/lector/tree/main/examples/basic?embed=1&file=src/App.tsx'
+              className='w-full h-full'
+              title='Lector Basic Example'
+              allow='accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking'
+              sandbox='allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts'
             />
           </div>
         </div>
-      </section> */}
+      </section>
     </div>
   );
 }
