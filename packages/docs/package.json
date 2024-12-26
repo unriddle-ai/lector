@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@unriddle-ai/lector": "workspace:*",
+    "clsx": "^2.1.1",
     "fumadocs-core": "14.6.1",
     "fumadocs-mdx": "11.1.2",
     "fumadocs-ui": "14.6.1",
@@ -19,6 +20,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "shiki": "^1.24.4",
+    "tailwind-merge": "^2.6.0",
     "use-debounce": "^10.0.4"
   },
   "devDependencies": {

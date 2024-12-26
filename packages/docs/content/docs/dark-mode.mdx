@@ -1,0 +1,44 @@
+---
+title: Dark Mode
+description: Learn about Lector's dark mode implementation using CSS filters and future plans
+---
+
+## Current Approach
+
+Lector implements dark mode support through custom CSS filters since PDF.js currently doesn't provide native dark mode support. This approach allows us to maintain compatibility while providing a good dark mode experience for users.
+
+## Implementation Details
+
+We use CSS filters to invert colors and adjust them for better readability in dark mode. This solution, while not perfect, provides a reasonable dark mode experience without requiring modifications to PDF.js itself.
+
+```tsx
+import { Root, Pages, Page, CanvasLayer } from "@unriddle-ai/lector";
+
+function PDFViewer() {
+  return (
+    <Root fileUrl='/sample.pdf'>
+      <Pages className='dark:invert-[94%] dark:hue-rotate-180 dark:brightness-[80%] dark:contrast-[228%]'>
+        <Page>
+          <CanvasLayer />
+        </Page>
+      </Pages>
+    </Root>
+  );
+}
+```
+
+## Current Limitations
+
+The CSS filter approach has some limitations:
+
+1. Color accuracy might not be perfect for all PDF documents
+2. Some PDFs with complex color schemes might not render optimally
+3. Performance impact on larger documents
+
+## Future Plans
+
+We are actively monitoring the PDF.js development regarding native dark mode support. As referenced in [PDF.js Issue #2071](https://github.com/mozilla/pdf.js/issues/2071), there are currently no plans to implement this feature in PDF.js itself.
+
+### Forking PDF.js
+
+**Forking PDF.js**: We might fork PDF.js in the future to implement proper dark mode support directly in the rendering pipeline.
