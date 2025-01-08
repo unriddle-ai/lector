@@ -29,7 +29,7 @@ const HighlightLayerContent = () => {
   };
 
   return (
-    <Pages className="p-4">
+    <Pages className="p-4 w-full">
       <Page>
         {selectionDimensions && <CustomSelect onHighlight={handleHighlight} />}
         <CanvasLayer />
