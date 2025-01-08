@@ -6,3 +6,81 @@ description: Using the PDF highlights feature
 import HighlightDemo from "@/components/highlight-layer";
 
 <HighlightDemo />
+
+## Implementation
+
+```tsx
+"use client";
+const HighlightLayerContent = () => {
+  const { jumpToHighlightRects } = usePdfJump();
+  const [selectedExample, setSelectedExample] = useState<string | null>(null);
+  const setHighlights = usePdf((state) => state.setHighlight);
+
+  const handleExampleClick = async (example: (typeof examples)[0]) => {
+    try {
+      setSelectedExample(example.text);
+
+      setHighlights(
+        example.highlights.map((rect, index) => ({
+          id: `highlight-${example.id}-${index}`,
+          ...rect,
+        }))
+      );
+
+      jumpToHighlightRects(example.highlights, "pixels");
+    } catch (error) {
+      console.error("Error highlighting text:", error);
+    }
+  };
+
+  return (
+    <div className="flex">
+      <div className="flex-1 relative">
+        <Pages className="p-4">
+          <Page>
+            <CanvasLayer />
+            <TextLayer />
+            <HighlightLayer className="bg-yellow-200/70" />
+          </Page>
+        </Pages>
+      </div>
+      <div className="w-80 p-4 bg-white shadow-lg overflow-auto">
+        <h2 className="text-lg font-bold mb-4">Important Sections</h2>
+        <div className="space-y-4">
+          {examples.map((example) => (
+            <div
+              key={example.id}
+              onClick={() => handleExampleClick(example)}
+              className={`p-3 border rounded cursor-pointer ${
+                selectedExample === example.text
+                  ? "bg-yellow-100"
+                  : "hover:bg-gray-50"
+              }`}
+            >
+              <h3 className="font-semibold text-gray-800">{example.title}</h3>
+              <p className="text-sm text-gray-600 mt-1">{example.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const PdfHighlightLayer = () => (
+  <Root
+    fileURL={fileUrl}
+    className="flex bg-gray-50 h-[500px]"
+    loader={<div className="p-4">Loading...</div>}
+  >
+    <HighlightLayerContent />
+  </Root>
+);
+
+export default PdfHighlightLayer;
+```
+
+This example shows:
+
+- Highlighting text on a PDF
+- Jumping to the highlighted text using the `jumpToHighlightRects` function
