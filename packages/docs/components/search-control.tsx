@@ -19,16 +19,17 @@ const ViewerZoomControl = () => {
   return (
     <Root
       fileURL={fileUrl}
-      className='flex bg-gray-50 h-[500px]'
-      loader={<div className='p-4'>Loading...</div>}>
+      className="flex bg-gray-50 h-[500px]"
+      loader={<div className="p-4">Loading...</div>}
+    >
       <Search>
         <SearchUI />
       </Search>
-      <Pages className='p-4 '>
+      <Pages className="p-4 w-full">
         <Page>
           <CanvasLayer />
           <TextLayer />
-          <HighlightLayer className='bg-yellow-200/70' />
+          <HighlightLayer className="bg-yellow-200/70" />
         </Page>
       </Pages>
     </Root>
