@@ -7,11 +7,42 @@ import PdfHighlightSelect from "@/components/highlight-select";
 
 <PdfHighlightSelect />
 
-## Implementation
+## Basic Usage
+
+Create a PDF viewer with text selection and highlighting capabilities:
 
 ```tsx
 "use client";
 
+import {
+  Root,
+  Pages,
+  Page,
+  CanvasLayer,
+  TextLayer,
+  HighlightLayer,
+  useSelectionDimensions,
+  usePdf,
+} from "@unriddle-ai/lector";
+
+const PdfHighlightSelect = () => (
+  <Root
+    fileURL="/pdf/document.pdf"
+    className="flex bg-gray-50 h-[500px]"
+    loader={<div className="p-4">Loading...</div>}
+  >
+    <HighlightLayerContent />
+  </Root>
+);
+
+export default PdfHighlightSelect;
+```
+
+## Highlight Layer Implementation
+
+Create a component to handle text selection and highlighting:
+
+```tsx
 const HighlightLayerContent = () => {
   const selectionDimensions = useSelectionDimensions();
   const setHighlights = usePdf((state) => state.setHighlight);
@@ -34,20 +65,39 @@ const HighlightLayerContent = () => {
     </Pages>
   );
 };
-
-const PdfHighlightSelect = () => (
-  <Root
-    fileURL={fileUrl}
-    className="flex bg-gray-50 h-[500px]"
-    loader={<div className="p-4">Loading...</div>}
-  >
-    <HighlightLayerContent />
-  </Root>
-);
-
-export default PdfHighlightSelect;
 ```
 
-This example shows:
+## Custom Selection Tooltip
 
-- Highlighting the selected text
+Add a custom tooltip that appears when text is selected:
+
+```tsx
+import { SelectionTooltip } from "@unriddle-ai/lector";
+
+export const CustomSelect = ({ onHighlight }: { onHighlight: () => void }) => {
+  return (
+    <SelectionTooltip>
+      <button
+        className="bg-white shadow-lg rounded-md px-3 py-1 hover:bg-yellow-200/70"
+        onClick={onHighlight}
+      >
+        Highlight
+      </button>
+    </SelectionTooltip>
+  );
+};
+```
+
+## Features
+
+- Text selection with visual feedback
+- Custom tooltip on selection
+- Highlight selected text
+- Persistent highlights
+
+## Best Practices
+
+- Add visual feedback for text selection
+- Include hover states for better UX
+- Handle collapsed selections
+- Add keyboard navigation support
