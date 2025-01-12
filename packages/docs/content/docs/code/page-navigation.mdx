@@ -7,12 +7,20 @@ import PageNavigation from "@/components/page-navigation-example.tsx";
 
 <PageNavigation />
 
+## Basic Usage
+
+Create a PDF viewer with custom navigation controls:
+
 ```tsx
 "use client";
+
+import { Root, Pages, Page, CanvasLayer, TextLayer } from "@unriddle-ai/lector";
+import PageNavigationButtons from "./ui/page-navigation-buttons";
+
 const PageNavigation = () => {
   return (
     <Root
-      fileURL={fileUrl}
+      fileURL="/pdf/document.pdf"
       className="flex bg-gray-50 h-[500px]"
       loader={<div className="p-4">Loading...</div>}
     >
@@ -32,6 +40,113 @@ const PageNavigation = () => {
 export default PageNavigation;
 ```
 
-The example above shows:
+## Navigation Buttons Implementation
 
-- Custom navigation buttons
+Create custom navigation controls with page jumping and input:
+
+```tsx
+import { usePdf, usePdfJump } from "@unriddle-ai/lector";
+import { useEffect, useState } from "react";
+
+const PageNavigationButtons = () => {
+  const pages = usePdf((state) => state.pdfDocumentProxy?.numPages);
+  const currentPage = usePdf((state) => state.currentPage);
+  const [pageNumber, setPageNumber] = useState<string | number>(currentPage);
+  const { jumpToPage } = usePdfJump();
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      jumpToPage(currentPage - 1, { behavior: "auto" });
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < pages) {
+      jumpToPage(currentPage + 1, { behavior: "auto" });
+    }
+  };
+
+  useEffect(() => {
+    setPageNumber(currentPage);
+  }, [currentPage]);
+
+  return (
+    <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex items-center gap-3 bg-white/90 backdrop-blur-sm rounded-full shadow-lg px-4 py-2.5 border border-gray-200">
+      <button
+        onClick={handlePreviousPage}
+        disabled={currentPage <= 1}
+        className="p-1.5 hover:bg-gray-100 rounded-full transition-colors disabled:opacity-40"
+        aria-label="Previous page"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+        >
+          <path d="m15 18-6-6 6-6" />
+        </svg>
+      </button>
+
+      <div className="flex items-center gap-2">
+        <input
+          type="number"
+          value={pageNumber}
+          onChange={(e) => setPageNumber(e.target.value)}
+          onBlur={(e) => {
+            const value = Number(e.target.value);
+            if (value >= 1 && value <= pages && currentPage !== value) {
+              jumpToPage(value, { behavior: "auto" });
+            } else {
+              setPageNumber(currentPage);
+            }
+          }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              e.currentTarget.blur();
+            }
+          }}
+          className="w-12 h-7 text-center bg-gray-50 border rounded-md text-sm focus:ring-2"
+        />
+        <span className="text-sm text-gray-500 font-medium">
+          / {pages || 1}
+        </span>
+      </div>
+
+      <button
+        onClick={handleNextPage}
+        disabled={currentPage >= pages}
+        className="p-1.5 hover:bg-gray-100 rounded-full transition-colors disabled:opacity-40"
+        aria-label="Next page"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+        >
+          <path d="m9 18 6-6-6-6" />
+        </svg>
+      </button>
+    </div>
+  );
+};
+
+export default PageNavigationButtons;
+```
+
+## Features
+
+- Previous and next page navigation
+- Direct page number input
+- Smooth page transitions
+- Current page indicator
+- Total pages display
+- Keyboard navigation support
+
+## Best Practices
+
+- Include keyboard navigation support
+- Use aria-labels for accessibility
+- Validate page number input
+- Implement smooth transitions
