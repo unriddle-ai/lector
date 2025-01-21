@@ -96,7 +96,7 @@ export function SearchUI() {
   };
 
   return (
-    <div className="flex flex-col w-64 h-full">
+    <div className="flex flex-col w-80 h-full">
       <div className="px-4 py-4 border-b border-gray-200 bg-white">
         <div className="relative">
           <input
