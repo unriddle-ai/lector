@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { usePdf, usePdfJump } from "@unriddle-ai/lector";
+import { Button } from "./button";
 
 const PageNavigationButtons = () => {
   const pages = usePdf((state) => state.pdfDocumentProxy?.numPages);
@@ -27,10 +28,11 @@ const PageNavigationButtons = () => {
 
   return (
     <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex items-center gap-3 bg-white/90 backdrop-blur-sm rounded-full shadow-lg px-4 py-2.5 border border-gray-200 pointer-events-auto z-50">
-      <button
+      <Button
+        variant={"ghost"}
         onClick={handlePreviousPage}
         disabled={currentPage <= 1}
-        className="p-1.5 hover:bg-gray-100 rounded-full transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+        className="rounded-full disabled:opacity-40 disabled:cursor-not-allowed"
         aria-label="Previous page"
       >
         <svg
@@ -47,7 +49,7 @@ const PageNavigationButtons = () => {
         >
           <path d="m15 18-6-6 6-6" />
         </svg>
-      </button>
+      </Button>
 
       <div className="flex items-center gap-2">
         <input
@@ -74,10 +76,11 @@ const PageNavigationButtons = () => {
         </span>
       </div>
 
-      <button
+      <Button
         onClick={handleNextPage}
         disabled={currentPage >= pages}
-        className="p-1.5 hover:bg-gray-100 rounded-full transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+        variant={"ghost"}
+        className="rounded-full disabled:opacity-40 disabled:cursor-not-allowed"
         aria-label="Next page"
       >
         <svg
@@ -94,7 +97,7 @@ const PageNavigationButtons = () => {
         >
           <path d="m9 18 6-6-6-6" />
         </svg>
-      </button>
+      </Button>
     </div>
   );
 };
