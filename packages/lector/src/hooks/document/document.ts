@@ -10,8 +10,7 @@ import type {
 } from "pdfjs-dist/types/src/display/api";
 import { useEffect, useState } from "react";
 
-import type { InitialPDFState } from "../../internal";
-import type { ZoomOptions } from "../../components/root";
+import type { InitialPDFState, ZoomOptions } from "../../internal";
 
 export interface usePDFDocumentParams {
   /**
