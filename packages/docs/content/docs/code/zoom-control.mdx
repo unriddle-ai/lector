@@ -1,6 +1,6 @@
 ---
 title: Zoom Control
-description: PDF viewer with zoom controls
+description: PDF viewer with zoom controls and configurable zoom limits
 ---
 
 import ViewerZoomControl from "@/components/zoom-control.tsx";
@@ -29,6 +29,10 @@ const ViewerZoomControl = () => {
       source="/pdf/document.pdf"
       className="bg-gray-100 border rounded-md overflow-hidden relative h-[500px] flex flex-col justify-stretch"
       loader={<div className="p-4">Loading...</div>}
+      zoomOptions={{
+        minZoom: 0.5, // 50% minimum zoom
+        maxZoom: 10, // 1000% maximum zoom
+      }}
     >
       <div className="bg-gray-100 border-b p-1 flex items-center justify-center text-sm text-gray-600 gap-2">
         Zoom
@@ -52,12 +56,33 @@ export default ViewerZoomControl;
 ## Features
 
 - Interactive zoom controls with real-time display
+- Configurable zoom limits through `zoomOptions` prop
 - Clean, minimal interface
 - Text selection support
 - Responsive layout
+
+## Zoom Configuration
+
+You can customize the zoom limits by passing `zoomOptions` to the Root component:
+
+```tsx
+<Root
+  zoomOptions={{
+    minZoom: 0.1,  // Allow 10% minimum zoom
+    maxZoom: 20,   // Allow 2000% maximum zoom
+  }}
+>
+```
+
+Default zoom limits if not specified:
+
+- Minimum zoom: 0.5 (50%)
+- Maximum zoom: 10 (1000%)
 
 ## Best Practices
 
 - Implement responsive zoom increments
 - Include proper loading states
 - Maintain consistent styling
+- Consider user experience when setting custom zoom limits
+- Test text readability at custom zoom levels
