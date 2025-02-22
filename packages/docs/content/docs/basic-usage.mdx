@@ -121,13 +121,13 @@ function PDFViewerWithZoom() {
 ### Adding Page Navigation
 
 ```tsx
-import { CurrentPage, PageCount } from "@unriddle-ai/lector";
+import { CurrentPage, TotalPages } from "@unriddle-ai/lector";
 
 function PDFViewerWithNavigation() {
   return (
     <Root source='/sample.pdf'>
       <div className='flex items-center gap-2 p-2'>
-        <CurrentPage /> of <PageCount />
+        <CurrentPage /> of <TotalPages />
       </div>
       <Pages>
         <Page>
