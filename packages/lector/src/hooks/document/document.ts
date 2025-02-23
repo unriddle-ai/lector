@@ -119,7 +119,7 @@ export const usePDFDocumentContext = ({
     };
     loadDocument();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [source]);
+  }, [source, zoomOptions]);
 
   return {
     initialState,
