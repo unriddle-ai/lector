@@ -43,7 +43,7 @@ export const usePDFDocumentContext = ({
   initialRotation = 0,
   isZoomFitWidth,
   zoom = 1,
-  zoomOptions = {},
+  zoomOptions,
 }: usePDFDocumentParams) => {
   const [_, setProgress] = useState(0);
 
