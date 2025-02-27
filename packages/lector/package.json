@@ -22,7 +22,7 @@
     "access": "public"
   },
   "scripts": {
-    "dev": "tsup --watch",
+    "dev": "tsup --watch --onSuccess 'yalc push'",
     "prebuild": "rm -rf dist",
     "build": "tsup",
     "lint": "eslint .",

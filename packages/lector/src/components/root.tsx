@@ -32,6 +32,8 @@ export const Root = forwardRef(
       zoomOptions,
     });
 
+    console.log("test 30");
+
     return (
       <Primitive.div ref={ref} {...props}>
         {initialState ? (
