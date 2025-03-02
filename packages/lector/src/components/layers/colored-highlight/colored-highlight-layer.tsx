@@ -2,7 +2,6 @@ import { useCallback, useState } from "react";
 import { usePDFPageNumber } from "../../../hooks/usePdfPageNumber";
 import { useSelectionDimensions } from "../../../hooks/useSelectionDimensions";
 import { usePdf, type ColoredHighlight } from "../../../internal";
-import { SelectionTooltip } from "../../selection-tooltip";
 import { v4 as uuidv4 } from "uuid";
 
 import { ColoredHighlightComponent } from "./colored-highlight";
