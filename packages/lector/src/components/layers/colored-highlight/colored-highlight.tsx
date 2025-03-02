@@ -1,6 +1,8 @@
 import { usePdf, type ColoredHighlight } from "../../../internal";
-import { getEndOfHighlight } from "../../../utils/getEndOfHighlight";
-import { getMidHeightOfHighlightLine } from "../../../utils/getEndOfHighlight";
+import {
+  getEndOfHighlight,
+  getMidHeightOfHighlightLine,
+} from "../../../utils/selectionUtils";
 import { useState } from "react";
 
 type ColoredHighlightComponentProps = {
