@@ -19,7 +19,7 @@ export const ColoredHighlightComponent = ({
 
   return (
     <div className="colored-highlight">
-      {selection.highlights.map((rect, index) => (
+      {selection.rectangles.map((rect, index) => (
         <span
           key={`${selection.uuid}-${index}`}
           onClick={() => setShowButton(!showButton)}

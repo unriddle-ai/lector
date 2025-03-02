@@ -30,7 +30,7 @@ export const ColoredHighlightLayer = ({
         uuid: uuidv4(),
         pageNumber: highlights[0].pageNumber, // usePDFPageNumber() doesn't return the correct page number, so i'm getting the number directly from the first highlight
         color,
-        highlights,
+        rectangles: highlights,
         text,
       };
       addColoredHighlight(highlight);

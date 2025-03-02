@@ -28,7 +28,7 @@ export interface ZoomOptions {
 
 export type ColoredHighlight = {
   color: string;
-  highlights: HighlightRect[];
+  rectangles: HighlightRect[];
   pageNumber: number;
   text: string;
   uuid: string;
