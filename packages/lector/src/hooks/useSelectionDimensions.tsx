@@ -83,7 +83,7 @@ const consolidateRects = (rects: HighlightRect[]): HighlightRect[] => {
 export const useSelectionDimensions = () => {
   const store = PDFStore.useContext();
 
-  const getDimension = (): Selection | undefined => {
+  const getDimension = (): CollapsibleSelection | undefined => {
     const selection = window.getSelection();
     if (!selection || selection.isCollapsed) return;
 
