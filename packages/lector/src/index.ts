@@ -27,4 +27,4 @@ export { calculateHighlightRects } from "./hooks/search/useSearchPosition";
 export { LinkService } from "./hooks/usePDFLinkService";
 export { useSelectionDimensions } from "./hooks/useSelectionDimensions";
 export { type HighlightRect, usePdf } from "./internal";
-export { ColoredHighlightLayer } from "./components/layers/colored-highlight-layer";
+export { ColoredHighlightLayer } from "./components/layers/colored-highlight/colored-highlight-layer";
