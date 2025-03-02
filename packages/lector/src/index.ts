@@ -1,7 +1,7 @@
 export { AnnotationLayer } from "./components/layers/annotation-layer";
 export { CanvasLayer } from "./components/layers/canvas-layer";
 export { CustomLayer } from "./components/layers/custom-layer";
-export { HighlightLayer } from "./components/layers/higlight-layer";
+export { HighlightLayer } from "./components/layers/highlight-layer";
 export { TextLayer } from "./components/layers/text-layer";
 export { Outline, OutlineChildItems, OutlineItem } from "./components/outline";
 export { Page } from "./components/page";
